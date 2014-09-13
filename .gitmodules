@@ -1,0 +1,3 @@
+[submodule "declarations"]
+	path = declarations
+	url = git@github.com:adamcarr/DefinitelyTyped.git

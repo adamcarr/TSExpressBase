@@ -1,21 +1,15 @@
 /// <reference path="../../declarations/express/express.d.ts" />
 
 import express = require('express');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
+import MiddlewareContracts = require('./Contracts');
+import expressMiddlewareBinder = require('./ExpressMiddlewareBinder');
 
-/**
- * Provides api to wire up middleware
- *
- * @module Middleware
- */
-module Middleware {
-    export function bootstrap(app: express.Application): express.Application {
-        app.use(bodyParser());
-        app.use(methodOverride());
+var binders: MiddlewareContracts.IMiddlewareBinder[] = [
+  expressMiddlewareBinder
+];
 
-        return app;
-    }
+export function bootstrap(app: express.Application): void {
+  binders.forEach((binder) => {
+    binder.bind(app);
+  })
 }
-
-export = Middleware;

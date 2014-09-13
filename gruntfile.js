@@ -30,7 +30,7 @@ module.exports = function (grunt) {
           // 'amd' (default) | 'commonjs'
           module: 'commonjs',
           // true (default) | false
-          sourceMap: true,
+          sourceMap: false,
           // true | false (default)
           declaration: false,
           // true (default) | false
@@ -46,21 +46,8 @@ module.exports = function (grunt) {
       //   }
       // },
     },
-    clean: ['dist'],
-    yuidoc: {
-      compile: {
-        name: '<%= pkg.name %>',
-        description: '<%= pkg.description %>',
-        version: '<%= pkg.version %>',
-        url: '<%= pkg.homepage %>',
-        options: {
-          extension: '.ts',                               // Default '.js' <comma-separated list of file extensions>
-          paths: '<%= BASE_PATH %>' + 'server/',
-          outdir: '<%= BASE_PATH %>' + 'docs/'
-        }
-      }
-    }
+    clean: ['dist']
   });
 
-  grunt.registerTask('default', ['clean', 'ts', 'yuidoc']);
+  grunt.registerTask('default', ['clean', 'ts']);
 }
