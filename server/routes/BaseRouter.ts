@@ -38,6 +38,7 @@ class BaseRouter {
   public registerRequestRouteHandler(
     requestRouteHandlerOptions: RouteContracts.IRequestRouteHandlerOptions): void {
     this.requestRouteHandlerOptions.push(requestRouteHandlerOptions);
+
     switch (requestRouteHandlerOptions.verb) {
       case RouteContracts.VERBS.ALL:
         this.router.all(requestRouteHandlerOptions.route, requestRouteHandlerOptions.handler);

@@ -8,10 +8,10 @@ import homeController = require('../controllers/Home');
 
 var homeRouterBinder: RouteContracts.IRouterBinder = function (app: express.Application): void {
   var expressRouter = express.Router();
-  var router = new BaseRouter(expressRouter, '/', app, [], homeController.requestParamHandlerBindings);
+  var router = new BaseRouter(expressRouter, '/home', app, [], homeController.requestParamHandlerBindings);
 
   router.registerRequestRouteHandler({
-    route: '',
+    route: '/index',
     verb: RouteContracts.VERBS.GET,
     handler: homeController.actions['index']
   });
