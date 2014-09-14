@@ -4,3 +4,5 @@
 .tscache
 node_modules
 dist
+LogFiles
+web.config
