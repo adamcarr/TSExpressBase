@@ -1,4 +1,4 @@
-/// <reference path="../../declarations/express/express.d.ts" />
+/// <reference path="../../typings/tsd.d.ts" />
 
 import express = require('express');
 import BaseRouter = require('./BaseRouter');
