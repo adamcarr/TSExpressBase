@@ -16,13 +16,8 @@ class BaseRouter {
     ) {
     app.use(this.baseRoute, this.router);
 
-    if (middlewareBinders.length > 0) {
-      middlewareBinders.forEach(this.bindMiddleware);
-    }
-
-    if (routeRequestParamHandlerBindings.length > 0) {
-      routeRequestParamHandlerBindings.forEach(this.bindRequestParamHandlerBinding);
-    }
+    middlewareBinders.forEach(this.bindMiddleware);
+    routeRequestParamHandlerBindings.forEach(this.bindRequestParamHandlerBinding);
   }
 
   public bindMiddleware(
@@ -38,30 +33,9 @@ class BaseRouter {
   public registerRequestRouteHandler(
     requestRouteHandlerOptions: RouteContracts.IRequestRouteHandlerOptions): void {
     this.requestRouteHandlerOptions.push(requestRouteHandlerOptions);
-
-    switch (requestRouteHandlerOptions.verb) {
-      case RouteContracts.VERBS.ALL:
-        this.router.all(requestRouteHandlerOptions.route, requestRouteHandlerOptions.handler);
-        break;
-      case RouteContracts.VERBS.GET:
-        this.router.get(requestRouteHandlerOptions.route, requestRouteHandlerOptions.handler);
-        break;
-      case RouteContracts.VERBS.PUT:
-        this.router.put(requestRouteHandlerOptions.route, requestRouteHandlerOptions.handler);
-        break;
-      case RouteContracts.VERBS.POST:
-        this.router.post(requestRouteHandlerOptions.route, requestRouteHandlerOptions.handler);
-        break;
-      case RouteContracts.VERBS.DELETE:
-        this.router.delete(requestRouteHandlerOptions.route, requestRouteHandlerOptions.handler);
-        break;
-      case RouteContracts.VERBS.PATCH:
-        this.router.patch(requestRouteHandlerOptions.route, requestRouteHandlerOptions.handler);
-        break;
-      case RouteContracts.VERBS.OPTIONS:
-        this.router.options(requestRouteHandlerOptions.route, requestRouteHandlerOptions.handler);
-        break;
-    }
+    
+    var verb = RouteContracts.Verbs[requestRouteHandlerOptions.verb];
+    this.router[verb](requestRouteHandlerOptions.route, requestRouteHandlerOptions.handler);
   }
 }
 
