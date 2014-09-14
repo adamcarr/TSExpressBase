@@ -3,14 +3,14 @@ import express = require('express');
 import MiddlewareContracts = require('../middleware/Contracts');
 import ControllerContracts = require('../controllers/Contracts');
 
-export enum VERBS {
-  ALL, GET, PUT, POST, DELETE, PATCH, OPTIONS
+export enum Verbs {
+  all, get, put, post, delete, patch, options
 }
 
 export interface IRequestRouteHandlerOptions {
   route: string;
   handler: express.RequestHandler;
-  verb: VERBS;
+  verb: Verbs;
 }
 
 export interface IViewRequestRouteHandlerOptions extends IRequestRouteHandlerOptions {

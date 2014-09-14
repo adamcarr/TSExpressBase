@@ -55,5 +55,5 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('default', ['clean', 'ts', 'copy']);
+  grunt.registerTask('default', ['ts', 'copy']);
 }

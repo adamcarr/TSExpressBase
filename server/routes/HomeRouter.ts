@@ -12,8 +12,20 @@ var homeRouterBinder: RouteContracts.IRouterBinder = function (app: express.Appl
 
   router.registerRequestRouteHandler({
     route: '/index',
-    verb: RouteContracts.VERBS.GET,
+    verb: RouteContracts.Verbs.get,
     handler: homeController.actions['index']
+  });
+  
+  router.registerRequestRouteHandler({
+    route: '/json',
+    verb: RouteContracts.Verbs.get,
+    handler: homeController.actions['json']
+  });
+  
+  router.registerRequestRouteHandler({
+    route: '/post',
+    verb: RouteContracts.Verbs.post,
+    handler: homeController.actions['post']
   });
 };
 
