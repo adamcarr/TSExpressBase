@@ -2,10 +2,12 @@
 
 import express = require('express');
 import MiddlewareContracts = require('./Contracts');
-import expressMiddlewareBinder = require('./ExpressMiddlewareBinder');
+import expressMiddlewareBinder = require('./applicationMiddleware/ExpressMiddlewareBinder');
+import hoganMiddlewareBinder = require('./applicationMiddleware/HoganMiddlewareBinder');
 
-var binders: MiddlewareContracts.IMiddlewareBinder[] = [
-  expressMiddlewareBinder
+var binders: MiddlewareContracts.IMiddlewareBinder<express.Application>[] = [
+  expressMiddlewareBinder,
+  hoganMiddlewareBinder
 ];
 
 export function bootstrap(app: express.Application): void {

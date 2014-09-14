@@ -46,8 +46,14 @@ module.exports = function (grunt) {
       //   }
       // },
     },
-    clean: ['dist']
+    clean: ['dist'],
+    copy: {
+      main: {
+        src: 'server/views/*',
+        dest: 'dist/',
+      },
+    }
   });
 
-  grunt.registerTask('default', ['clean', 'ts']);
+  grunt.registerTask('default', ['clean', 'ts', 'copy']);
 }
