@@ -1,16 +1,17 @@
 /// <reference path="../../typings/tsd.d.ts" />
 
 import express = require('express');
-import BaseRouter = require('./BaseRouter');
 import RouteContracts = require('./Contracts');
-import homeRouterBinder = require('./HomeRouter');
+import homeRouter = require('./HomeRouter');
+import apiMetadataRouter = require('./ApiMetadata');
 
-var routerBinders: RouteContracts.IRouterBinder[] = [
-  homeRouterBinder
+export var routers: RouteContracts.IRouter[] = [
+  homeRouter,
+  apiMetadataRouter
 ];
 
 export function bootstrap(app: express.Application): void{
-  routerBinders.forEach((router: RouteContracts.IRouterBinder) => {
-    router(app);
+  routers.forEach((router: RouteContracts.IRouter) => {
+    router.bindToApp(app);
   })
 }

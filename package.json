@@ -12,6 +12,7 @@
     "body-parser": "^1.8.1",
     "express": "^4.9.0",
     "hogan-express": "^0.5.2",
+    "lodash": "^2.4.1",
     "method-override": "^2.2.0"
   },
   "devDependencies": {

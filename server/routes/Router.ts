@@ -4,20 +4,10 @@ import MiddlewareContracts = require('../middleware/Contracts');
 import ControllerContracts = require('../controllers/Contracts');
 import RouteContracts = require('./Contracts');
 
-class BaseRouter {
+class Router implements RouteContracts.IRouter {
   public requestRouteHandlerOptions: RouteContracts.IRequestRouteHandlerOptions[] = [];
 
-  constructor(
-    public router: express.Router,
-    public baseRoute: string,
-    app: express.Application,
-    middlewareBinders: MiddlewareContracts.IMiddlewareBinder<express.IRouter<express.Router>>[] = [],
-    routeRequestParamHandlerBindings: RouteContracts.IRouteRequestParamHandlerBinding[] = []
-    ) {
-    app.use(this.baseRoute, this.router);
-
-    middlewareBinders.forEach(this.bindMiddleware);
-    routeRequestParamHandlerBindings.forEach(this.bindRequestParamHandlerBinding);
+  constructor(public router: express.Router, public baseRoute: string, public routerName?: string) {
   }
 
   public bindMiddleware(
@@ -29,14 +19,19 @@ class BaseRouter {
     routeRequestParamBinding: RouteContracts.IRouteRequestParamHandlerBinding): void {
     this.router.param(routeRequestParamBinding.paramName, routeRequestParamBinding.requestParamHandler);
   }
-
-  public registerRequestRouteHandler(
-    requestRouteHandlerOptions: RouteContracts.IRequestRouteHandlerOptions): void {
+  
+  public registerRequestRouteHandler(requestRouteHandlerOptions: RouteContracts.IRequestRouteHandlerOptions): void {
     this.requestRouteHandlerOptions.push(requestRouteHandlerOptions);
+  }
+
+  public bindToApp(app: express.Application): void {
+    app.use(this.baseRoute, this.router);
     
-    var verb = RouteContracts.Verbs[requestRouteHandlerOptions.verb];
-    this.router[verb](requestRouteHandlerOptions.route, requestRouteHandlerOptions.handler);
+    this.requestRouteHandlerOptions.forEach((requestRouteHandlerOptions) => {
+      var verb = RouteContracts.Verbs[requestRouteHandlerOptions.verb];
+      this.router[verb](requestRouteHandlerOptions.route, requestRouteHandlerOptions.handler);
+    });
   }
 }
 
-export = BaseRouter;
+export = Router;

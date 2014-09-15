@@ -1,7 +1,6 @@
 /// <reference path="../../typings/tsd.d.ts" />
 import express = require('express');
 import ControllerContracts = require('./Contracts');
-import HomeViewModels = require('../viewModels/Home');
 
 var controller: ControllerContracts.IController = {
   requestParamHandlerBindings: [],

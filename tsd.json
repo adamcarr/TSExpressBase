@@ -13,6 +13,9 @@
     },
     "body-parser/body-parser.d.ts": {
       "commit": "50dd84eb5d5593787b7686decf1476d094f5e13a"
+    },
+    "lodash/lodash.d.ts": {
+      "commit": "50dd84eb5d5593787b7686decf1476d094f5e13a"
     }
   }
 }
