@@ -8,6 +8,19 @@ module.exports = function (grunt) {
     BASE_PATH: './',
     DIST_PATH: './dist/',
 
+    bower: {
+      install: {
+        options: {
+          targetDir: './dist/client',
+          layout: 'byType',
+          install: true,
+          verbose: false,
+          cleanTargetDir: true,
+          cleanBowerDir: false,
+          bowerOptions: {}
+        }
+      }
+    },
     ts: {
       // A specific target
       server: {
@@ -36,24 +49,29 @@ module.exports = function (grunt) {
           // true (default) | false
           removeComments: false
         }
+      },
+      client: {
+        src: ['client/scripts/**/*.ts'],
+        reference: 'client/scripts/reference.ts',
+        out: 'dist/client/js/app.js',
+        html: ['client/scripts/**/*.html'],
+        options: {
+          target: 'es3',
+          module: 'commonjs',
+          sourceMap: true,
+          declaration: false,
+          removeComments: true
+        }
       }
-      // Another target
-      // dist: {
-      //   src: ["test/work/**/*.ts"],
-      //   // Override the main options for this target
-      //   options: {
-      //     sourceMap: false,
-      //   }
-      // },
     },
     clean: ['dist'],
     copy: {
       main: {
         src: 'server/views/*',
-        dest: 'dist/',
-      },
+        dest: 'dist/'
+      }
     }
   });
 
-  grunt.registerTask('default', ['ts', 'copy']);
+  grunt.registerTask('default', ['bower', 'ts', 'copy']);
 }

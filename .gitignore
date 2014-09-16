@@ -6,3 +6,5 @@ node_modules
 dist
 LogFiles
 web.config
+client/scripts/**/*.html.ts
+bower_components

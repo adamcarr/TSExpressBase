@@ -1,0 +1,32 @@
+{
+  "name": "TSExpressBase",
+  "version": "0.0.0",
+  "homepage": "https://github.com/adamcarr/TSExpressBase",
+  "authors": [
+    "Adam Carr <adam.carr@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.24",
+    "angular-resource": "~1.2.24",
+    "angular-route": "~1.2.24"
+  },
+  "exportsOverride": {
+    "angular": {
+      "js": "angular*.js*"
+    },
+    "angular-resource": {
+      "js": "angular-resource*.js*"
+    },
+    "angular-route": {
+      "js": "angular-route*.js*"
+    }
+  }
+}
